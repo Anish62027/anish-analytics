@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anish Analytics | Data Analyst Portfolio</title>
+    <meta name="description" content="Portfolio of Anish Kumar, a Data Analyst specializing in Python, SQL, Power BI, and Looker Studio.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        primary: '#3B82F6', // Blue-500
+                        secondary: '#10B981', // Emerald-500
+                        accent: '#8B5CF6', // Violet-500
+                        dark: '#0B1121', // Deep Navy
+                        darker: '#020617', // Slate-950
+                        card: '#151E32', // Navy-Light
+                        text: '#E2E8F0', // Slate-200
+                        muted: '#94A3B8', // Slate-400
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                        'reverse-spin': 'reverseSpin 3s linear infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        reverseSpin: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(-360deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #10B981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradientMove 5s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(21, 30, 50, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Card Tilt Effect Base */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+        
+        .tilt-content {
+            transform: translateZ(20px);
+        }
+
+        /* Glitch Effect on Hover for Logo */
+        .glitch-hover:hover {
+            animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #3B82F6;
+        }
+        @keyframes glitch {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        /* Project Filters */
+        .filter-btn.active {
+            background-color: #3B82F6;
+            color: white;
+            border-color: #3B82F6;
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Advanced Additions --- */
+        
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #3B82F6;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+        /* Mobile: hide custom cursor */
+        @media (max-width: 768px) {
+            .cursor-dot, .cursor-outline { display: none; }
+        }
+
+        /* Spotlight Wrapper */
+        .spotlight-wrapper {
+            position: relative;
+            background: #151E32; /* Fallback */
+            border-radius: 1rem;
+            padding: 1px;
+            overflow: hidden;
+            height: 100%;
+        }
+        .spotlight-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(59, 130, 246, 0.4),
+                transparent 40%
+            );
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .spotlight-wrapper:hover::before {
+            opacity: 1;
+        }
+        
+        /* Inner content over the border gradient */
+        .spotlight-inner {
+            position: relative;
+            background: #151E32; /* Matches card color */
+            border-radius: 1rem;
+            height: 100%;
+            z-index: 2;
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3B82F6, #10B981);
+            z-index: 10000;
+            width: 0%;
+            transition: width 0.1s;
+        }
+        
+        /* Typing Cursor */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-start infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Magnetic Effect Class */
+        .magnetic {
+            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: inline-block;
+        }
+        
+        /* Chatbot Animations */
+        .message-enter {
+            animation: slideIn 0.3s ease-out forwards;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Form Styles */
+        input, textarea {
+            transition: all 0.3s ease;
+        }
+        input:focus, textarea:focus {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-darker text-text font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-darker flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative w-24 h-24 mb-6">
+            <div class="absolute inset-0 border-t-4 border-primary rounded-full animate-spin"></div>
+            <div class="absolute inset-3 border-r-4 border-secondary rounded-full animate-reverse-spin"></div>
+            <div class="absolute inset-6 border-b-4 border-accent rounded-full animate-spin-slow"></div>
+        </div>
+        <div class="font-mono text-primary text-xl animate-pulse tracking-widest" id="loader-text">INITIALIZING...</div>
+        <div class="mt-2 text-xs text-muted font-mono" id="loader-percent">0%</div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Pricing Modal -->
+    <div id="pricing-modal" class="fixed inset-0 z-[60] bg-darker/90 backdrop-blur-md hidden flex items-center justify-center p-4 transition-all duration-300 opacity-0">
+        <div class="bg-card border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative shadow-2xl transform scale-95 transition-transform duration-300" id="pricing-content">
+            <button onclick="closePricing()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="p-8">
+                <h3 class="text-3xl font-bold mb-2 text-center text-white" id="modal-title">Service Pricing</h3>
+                <p class="text-muted text-center mb-8">Transparent pricing tailored to your needs.</p>
+                
+                <div class="grid md:grid-cols-3 gap-6" id="pricing-cards">
+                    <!-- Cards will be injected by JS -->
+                </div>
+                
+                <div class="mt-8 text-center border-t border-white/10 pt-6">
+                    <p class="text-sm text-muted mb-4">Need a custom solution?</p>
+                    <button onclick="contactRedirect('Custom Quote Inquiry')" class="px-6 py-3 bg-primary text-white rounded-lg font-bold hover:bg-blue-600 transition-colors">Contact for Custom Quote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chatbot Widget -->
+    <div class="fixed bottom-6 right-6 z-[90]">
+        <!-- Chat Button -->
+        <button id="chat-toggle" onclick="toggleChat()" class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white shadow-[0_0_20px_rgba(59,130,246,0.6)] hover:scale-110 transition-all duration-300 relative group overflow-hidden">
+            <div class="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
+            <i class="fas fa-robot text-2xl relative z-10"></i>
+            <!-- Tooltip -->
+            <span class="absolute right-full mr-4 bg-card border border-white/10 px-3 py-1 rounded text-xs whitespace-nowrap text-white opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Chat with AI</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="absolute bottom-20 right-0 w-80 sm:w-96 h-[500px] bg-card border border-white/10 rounded-2xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 transform scale-0 origin-bottom-right opacity-0 pointer-events-none">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-primary to-accent p-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white backdrop-blur-sm">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white text-sm">Anish AI Assistant</h4>
+                        <div class="flex items-center gap-1.5">
+                            <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            <span class="text-xs text-white/80">Online</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="text-white/80 hover:text-white transition-colors">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Messages Area -->
+            <div id="chat-messages" class="flex-1 bg-darker/50 p-4 overflow-y-auto space-y-4 scroll-smooth">
+                <!-- Messages will be injected by JS -->
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 bg-card border-t border-white/10">
+                <div class="relative">
+                    <input type="text" id="chat-input" placeholder="Type here..." class="w-full bg-darker border border-white/10 rounded-full pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-primary/50 transition-colors" onkeypress="if(event.key === 'Enter') sendMessage()">
+                    <button onclick="sendMessage()" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-colors">
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </button>
+                </div>
+                <div class="text-[10px] text-center text-muted mt-2">
+                    Powered by Anish's Custom AI Logic
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+
+    <!-- Canvas Background -->
+    <canvas id="canvas-network" class="fixed top-0 left-0 w-full h-full -z-10 opacity-40 pointer-events-none"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center group cursor-pointer magnetic">
+                    <span class="text-2xl font-bold tracking-tighter font-mono glitch-hover">
+                        anish<span class="text-primary">-</span>analytics
+                    </span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#about" class="magnetic hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
+                            About
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#services" class="magnetic hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
+                            Services
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#skills" class="magnetic hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
+                            Skills
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#projects" class="magnetic hover:text-primary transition-colors px-3 py-2 rounded-md text-sm font-medium relative group">
+                            Projects
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                        </a>
+                        <a href="#contact" class="magnetic px-5 py-2.5 rounded-full bg-gradient-to-r from-primary to-accent text-white font-medium text-sm transition-all hover:shadow-[0_0_20px_rgba(59,130,246,0.5)] hover:scale-105" onclick="contactRedirect('Freelance Inquiry')">
+                            Hire Me for Freelance
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" onclick="toggleMobileMenu()" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden glass absolute w-full border-b border-white/10" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2">
+                <a href="#about" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="#skills" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Skills</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Projects</a>
+                <a href="#contact" onclick="toggleMobileMenu(); contactRedirect('Freelance Inquiry')" class="text-primary font-bold block px-3 py-2 rounded-md text-base mt-4">Hire Me for Freelance</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+        <!-- Animated Blobs -->
+        <div class="absolute top-20 right-0 w-72 h-72 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
+        <div class="absolute top-40 right-40 w-72 h-72 bg-accent/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-secondary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-4000"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-left reveal active">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-medium mb-6">
+                        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                        Open for Freelance & Projects
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight">
+                        Transforming Data into <br>
+                        <span class="text-gradient" id="typing-text">Intelligence.</span><span class="typing-cursor"></span>
+                    </h1>
+                    
+                    <p class="mt-4 text-xl text-muted max-w-lg leading-relaxed">
+                        I am <span class="text-white font-semibold">Anish Kumar</span>, a Data Analyst bridging the gap between raw data and strategic business decisions using AI & ML.
+                    </p>
+                    
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <a href="#projects" class="magnetic px-8 py-3.5 rounded-lg bg-white text-darker font-bold transition-all hover:bg-gray-100 hover:-translate-y-1 shadow-[0_0_20px_rgba(255,255,255,0.3)] inline-block">
+                            View Work
+                        </a>
+                        <button onclick="contactRedirect('General Inquiry')" class="magnetic px-8 py-3.5 rounded-lg bg-white/5 border border-white/10 text-white font-semibold transition-all hover:bg-white/10 hover:-translate-y-1 backdrop-blur-sm inline-block">
+                            Contact Me
+                        </button>
+                    </div>
+
+                    <!-- Mini Stats -->
+                    <div class="mt-12 flex gap-8 border-t border-white/10 pt-8">
+                        <div>
+                            <div class="text-3xl font-bold text-white counter" data-target="4">0</div>
+                            <div class="text-sm text-muted">Featured Projects</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white counter" data-target="15">0</div>
+                            <div class="text-sm text-muted">Certifications</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white counter" data-target="100">0</div>
+                            <div class="text-sm text-muted">% Dedication</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Illustration / Code Snippet Visual -->
+                <div class="hidden lg:block relative reveal active delay-200">
+                    <div class="relative w-full aspect-square max-w-md mx-auto animate-float">
+                        <!-- Abstract layered cards representing data layers -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-accent/20 rounded-2xl transform rotate-6 border border-white/5 backdrop-blur-sm"></div>
+                        <div class="absolute inset-0 bg-darker/90 rounded-2xl border border-white/10 shadow-2xl p-6 transform -rotate-3 transition-transform hover:rotate-0 duration-500">
+                            <!-- Fake Code Editor UI -->
+                            <div class="flex items-center gap-2 mb-4 border-b border-white/5 pb-4">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                <span class="ml-auto text-xs text-muted font-mono">analysis.py</span>
+                            </div>
+                            <div class="font-mono text-sm space-y-2">
+                                <div class="text-gray-400">import <span class="text-primary">pandas</span> as <span class="text-yellow-300">pd</span></div>
+                                <div class="text-gray-400">import <span class="text-primary">sklearn</span></div>
+                                <div class="text-gray-400">from <span class="text-accent">model</span> import <span class="text-secondary">InsightGenerator</span></div>
+                                <br>
+                                <div class="text-purple-400"># Load and Process Data</div>
+                                <div class="text-gray-300">df = pd.read_sql(<span class="text-green-400">"SELECT * FROM insights"</span>)</div>
+                                <div class="text-gray-300">clean_df = preprocess(df)</div>
+                                <br>
+                                <div class="text-purple-400"># Generate Value</div>
+                                <div class="text-gray-300">results = model.predict(clean_df)</div>
+                                <div class="text-blue-400">print(<span class="text-green-400">f"Optimization: {results.max()}%"</span>)</div>
+                            </div>
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-6 -right-6 bg-card border border-white/10 p-4 rounded-xl shadow-xl flex items-center gap-3 animate-bounce">
+                                <div class="bg-green-500/20 p-2 rounded-lg text-green-400">
+                                    <i class="fas fa-check-circle text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="text-xs text-muted">Accuracy</div>
+                                    <div class="text-lg font-bold text-white">98.5%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freelance Services Section (Updated with Clickable Cards) -->
+    <section id="services" class="py-24 bg-card/20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Freelance Services">Freelance Services</h2>
+                <p class="text-muted max-w-2xl mx-auto">Click on any service below to view detailed pricing plans.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 reveal">
+                <!-- Service 1 (Interactive Dashboards) -->
+                <div class="spotlight-wrapper cursor-pointer" onclick="openPricing('dashboards')">
+                    <div class="spotlight-inner p-8 flex flex-col items-start h-full group">
+                        <div class="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center text-primary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Interactive Dashboards</h3>
+                        <p class="text-muted text-sm leading-relaxed mb-4 flex-grow">
+                            Custom <b>Power BI</b>, <b>Excel</b>, and <b>Google Looker Studio</b> dashboards that visualize your key metrics (KPIs) in real-time. Perfect for tracking sales, inventory, and performance.
+                        </p>
+                        <div class="mt-auto w-full">
+                            <span class="text-xs text-primary font-bold uppercase tracking-wider">View Pricing <i class="fas fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 (Data Cleaning) -->
+                <div class="spotlight-wrapper cursor-pointer" onclick="openPricing('cleaning')">
+                    <div class="spotlight-inner p-8 flex flex-col items-start h-full group">
+                        <div class="w-14 h-14 bg-secondary/10 rounded-lg flex items-center justify-center text-secondary text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-broom"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Data Cleaning & Analysis</h3>
+                        <p class="text-muted text-sm leading-relaxed mb-4 flex-grow">
+                            Transform messy, raw data into clean, structured formats ready for analysis. I handle missing values, duplicates, and complex SQL queries.
+                        </p>
+                        <div class="mt-auto w-full">
+                            <span class="text-xs text-secondary font-bold uppercase tracking-wider">View Pricing <i class="fas fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 (ML Models) -->
+                <div class="spotlight-wrapper cursor-pointer" onclick="openPricing('ml')">
+                    <div class="spotlight-inner p-8 flex flex-col items-start h-full group">
+                        <div class="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center text-accent text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">Machine Learning Models</h3>
+                        <p class="text-muted text-sm leading-relaxed mb-4 flex-grow">
+                            Predict future trends and automate decisions using custom AI models. From spam classifiers to predictive maintenance systems.
+                        </p>
+                        <div class="mt-auto w-full">
+                            <span class="text-xs text-accent font-bold uppercase tracking-wider">View Pricing <i class="fas fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 (AI Agents) -->
+                <div class="spotlight-wrapper cursor-pointer" onclick="openPricing('ai_agents')">
+                    <div class="spotlight-inner p-8 flex flex-col items-start h-full group">
+                        <div class="w-14 h-14 bg-purple-500/10 rounded-lg flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white">AI Agent Development</h3>
+                        <p class="text-muted text-sm leading-relaxed mb-4 flex-grow">
+                            Building intelligent autonomous agents (using LangChain, CrewAI) that automate complex workflows and interact naturally with users.
+                        </p>
+                        <div class="mt-auto w-full">
+                            <span class="text-xs text-purple-400 font-bold uppercase tracking-wider">View Pricing <i class="fas fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with Marquee/Grid -->
+    <section id="skills" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Tech Arsenal">Tech Arsenal</h2>
+                <p class="text-muted max-w-2xl mx-auto">Leveraging modern frameworks and robust logic to solve complex data problems.</p>
+            </div>
+
+            <!-- Changed to Flex to center 5 items nicely -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 reveal">
+                <!-- Skill Card 1 (Spotlight) -->
+                <div class="spotlight-wrapper">
+                    <div class="spotlight-inner p-6 flex flex-col items-center group h-full">
+                        <div class="w-16 h-16 rounded-full bg-darker flex items-center justify-center text-3xl text-yellow-400 mb-4 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1">Python</h3>
+                        <p class="text-xs text-muted text-center">Pandas, NumPy, Scikit-learn</p>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2 (Spotlight) -->
+                <div class="spotlight-wrapper">
+                    <div class="spotlight-inner p-6 flex flex-col items-center group h-full">
+                        <div class="w-16 h-16 rounded-full bg-darker flex items-center justify-center text-3xl text-blue-400 mb-4 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1">SQL</h3>
+                        <p class="text-xs text-muted text-center">MySQL, Postgres, Query Optimization</p>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3 (Spotlight) -->
+                <div class="spotlight-wrapper">
+                    <div class="spotlight-inner p-6 flex flex-col items-center group h-full">
+                        <div class="w-16 h-16 rounded-full bg-darker flex items-center justify-center text-3xl text-yellow-500 mb-4 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1">Power BI</h3>
+                        <p class="text-xs text-muted text-center">DAX, Power-Query, Dashboarding, Reporting</p>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4 (Spotlight) -->
+                <div class="spotlight-wrapper">
+                    <div class="spotlight-inner p-6 flex flex-col items-center group h-full">
+                        <div class="w-16 h-16 rounded-full bg-darker flex items-center justify-center text-3xl text-accent mb-4 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1">Machine Learning</h3>
+                        <p class="text-xs text-muted text-center">Prediction, Classification, NLP</p>
+                    </div>
+                </div>
+
+                <!-- Skill Card 5 (Spotlight - Added Looker Studio) -->
+                <div class="spotlight-wrapper">
+                    <div class="spotlight-inner p-6 flex flex-col items-center group h-full">
+                        <div class="w-16 h-16 rounded-full bg-darker flex items-center justify-center text-3xl text-blue-600 mb-4 shadow-inner group-hover:scale-110 transition-transform">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-center">Looker Studio</h3>
+                        <p class="text-xs text-muted text-center">Google Data Studio, GA4, Live Reports</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Tools Badge Cloud -->
+            <div class="mt-12 flex flex-wrap justify-center gap-3 reveal delay-200">
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default magnetic">Streamlit</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default magnetic">FastAPI</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default magnetic">Git/GitHub</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default magnetic">Docker</span>
+                <span class="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300 hover:bg-white/10 transition-colors cursor-default magnetic">Excel (Advanced)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Timeline -->
+    <section id="experience" class="py-24 bg-card/20 border-y border-white/5">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Professional Journey">Professional Journey</h2>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-secondary opacity-30"></div>
+
+                <!-- Experience Item 1 -->
+                <div class="relative z-10 mb-12 md:mb-20">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left md:text-right reveal px-4">
+                            <h3 class="text-2xl font-bold text-white">MIS Executive</h3>
+                            <div class="text-primary font-medium mb-2">Spiderlink Network Pvt. Ltd.</div>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Spearheading data collection and cleaning initiatives. Creating automated daily and monthly reports that drive executive decision-making. Ensuring 100% data accuracy for operational tracking.
+                            </p>
+                        </div>
+                        <div class="order-1 md:w-2/12 flex justify-center py-4 md:py-0">
+                            <div class="w-12 h-12 bg-darker border-2 border-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)] z-20 bg-darker">
+                                <i class="fas fa-briefcase text-primary text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left reveal px-4">
+                            <div class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold mb-2">
+                                Dec 2025 – Present
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Item 2 -->
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left md:text-right md:order-3 reveal px-4">
+                            <h3 class="text-2xl font-bold text-white">Data Analyst Intern</h3>
+                            <div class="text-secondary font-medium mb-2">Edulyt India</div>
+                            <p class="text-muted text-sm leading-relaxed">
+                                Transformed raw educational data into actionable insights using Power BI and Excel. visualized KPI performance for student metrics, directly influencing curriculum adjustments.
+                            </p>
+                        </div>
+                        <div class="order-1 md:w-2/12 flex justify-center py-4 md:py-0 md:order-2">
+                            <div class="w-12 h-12 bg-darker border-2 border-secondary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)] z-20 bg-darker">
+                                <i class="fas fa-graduation-cap text-secondary text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left md:order-1 md:text-right reveal px-4">
+                            <div class="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-xs font-bold mb-2">
+                                May 2025 – Jul 2025
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section (Added based on Resume) -->
+    <section id="education" class="py-24">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Academic Background">Academic Background</h2>
+                <p class="text-muted">My educational foundation in technology and science.</p>
+            </div>
+
+            <div class="relative">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-purple-500 to-secondary opacity-30"></div>
+
+                <!-- Education Item 1 -->
+                <div class="relative z-10 mb-12 md:mb-20">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left md:text-right reveal px-4">
+                            <h3 class="text-xl font-bold text-white">B.Tech (AI & ML)</h3>
+                            <div class="text-primary font-medium mb-1">Suresh Gyan Vihar University, Jaipur</div>
+                            <p class="text-muted text-sm">Specialization in Artificial Intelligence & Machine Learning. <br> <span class="text-white font-semibold">SGPA: 7.5 (VIIth Sem)</span></p>
+                        </div>
+                        <div class="order-1 md:w-2/12 flex justify-center py-4 md:py-0">
+                            <div class="w-12 h-12 bg-darker border-2 border-primary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)] z-20 bg-darker">
+                                <i class="fas fa-user-graduate text-primary text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left reveal px-4">
+                            <div class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold mb-2">
+                                2022 – 2026
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Item 2 -->
+                <div class="relative z-10">
+                    <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                        <div class="order-1 md:w-5/12 text-left md:text-right md:order-3 reveal px-4">
+                            <h3 class="text-xl font-bold text-white">Higher Secondary</h3>
+                            <div class="text-secondary font-medium mb-1">R.J.S College, Saran (Bihar)</div>
+                            <p class="text-muted text-sm">Focused on Science and Mathematics. <br> <span class="text-white font-semibold">Score: 72.6%</span></p>
+                        </div>
+                        <div class="order-1 md:w-2/12 flex justify-center py-4 md:py-0 md:order-2">
+                            <div class="w-12 h-12 bg-darker border-2 border-secondary rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.5)] z-20 bg-darker">
+                                <i class="fas fa-university text-secondary text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="order-1 md:w-5/12 text-left md:order-1 md:text-right reveal px-4">
+                            <div class="inline-block px-4 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-xs font-bold mb-2">
+                                2018 – 2020
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with Filter -->
+    <section id="projects" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Featured Projects">Featured Projects</h2>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-3 mt-8">
+                    <button class="filter-btn active magnetic px-5 py-2 rounded-full border border-white/10 bg-white/5 text-sm font-medium transition-all hover:bg-white/10" data-filter="all">All Work</button>
+                    <button class="filter-btn magnetic px-5 py-2 rounded-full border border-white/10 bg-white/5 text-sm font-medium transition-all hover:bg-white/10" data-filter="python">Python & ML</button>
+                    <button class="filter-btn magnetic px-5 py-2 rounded-full border border-white/10 bg-white/5 text-sm font-medium transition-all hover:bg-white/10" data-filter="powerbi">Power BI & SQL</button>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 reveal" id="projects-grid">
+                
+                <!-- Project 1 -->
+                <div class="project-card group relative h-full" data-category="python">
+                    <div class="tilt-card h-full bg-darker border border-white/10 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors duration-300 relative">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-darker z-10"></div>
+                        <!-- Decorative background -->
+                        <div class="h-48 bg-gradient-to-br from-blue-900/40 to-darker relative overflow-hidden">
+                            <div class="absolute -right-10 -top-10 text-9xl text-white/5 rotate-12"><i class="fas fa-shield-alt"></i></div>
+                        </div>
+                        
+                        <div class="p-8 relative z-20 -mt-20 tilt-content">
+                            <div class="w-14 h-14 rounded-xl bg-card border border-white/10 flex items-center justify-center text-primary text-2xl shadow-lg mb-6">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">SMS Spam Classifier</h3>
+                            <p class="text-muted text-sm mb-6 leading-relaxed">
+                                A high-precision classifier built to detect spam with confidence scores. Utilizes TF-IDF vectorization and Stacking Classifiers wrapped in a Streamlit app.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2 py-1 bg-primary/10 text-primary text-xs rounded border border-primary/20">Python</span>
+                                <span class="px-2 py-1 bg-blue-500/10 text-blue-300 text-xs rounded border border-blue-500/20">Scikit-learn</span>
+                                <span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded">Streamlit</span>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 flex justify-between items-center">
+                                <a href="#" class="text-white font-medium text-sm hover:text-primary flex items-center gap-2">
+                                    View Code <i class="fab fa-github"></i>
+                                </a>
+                                <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all cursor-pointer magnetic">
+                                    <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card group relative h-full" data-category="powerbi">
+                    <div class="tilt-card h-full bg-darker border border-white/10 rounded-2xl overflow-hidden hover:border-secondary/50 transition-colors duration-300 relative">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-darker z-10"></div>
+                        <div class="h-48 bg-gradient-to-br from-emerald-900/40 to-darker relative overflow-hidden">
+                            <div class="absolute -right-10 -top-10 text-9xl text-white/5 rotate-12"><i class="fas fa-hospital"></i></div>
+                        </div>
+                        
+                        <div class="p-8 relative z-20 -mt-20 tilt-content">
+                            <div class="w-14 h-14 rounded-xl bg-card border border-white/10 flex items-center justify-center text-secondary text-2xl shadow-lg mb-6">
+                                <i class="fas fa-hospital"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-secondary transition-colors">Smart Hospital Analytics</h3>
+                            <p class="text-muted text-sm mb-6 leading-relaxed">
+                                Comprehensive dashboard integrating SQL data to monitor patient records and doctor performance, significantly improving operational decision-making.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2 py-1 bg-secondary/10 text-secondary text-xs rounded border border-secondary/20">Power BI</span>
+                                <span class="px-2 py-1 bg-emerald-500/10 text-emerald-300 text-xs rounded border border-emerald-500/20">SQL</span>
+                                <span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded">DAX</span>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 flex justify-between items-center">
+                                <a href="#" class="text-white font-medium text-sm hover:text-secondary flex items-center gap-2">
+                                    View Dashboard <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all cursor-pointer magnetic">
+                                    <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card group relative h-full" data-category="python">
+                    <div class="tilt-card h-full bg-darker border border-white/10 rounded-2xl overflow-hidden hover:border-accent/50 transition-colors duration-300 relative">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-darker z-10"></div>
+                        <div class="h-48 bg-gradient-to-br from-violet-900/40 to-darker relative overflow-hidden">
+                            <div class="absolute -right-10 -top-10 text-9xl text-white/5 rotate-12"><i class="fab fa-whatsapp"></i></div>
+                        </div>
+                        
+                        <div class="p-8 relative z-20 -mt-20 tilt-content">
+                            <div class="w-14 h-14 rounded-xl bg-card border border-white/10 flex items-center justify-center text-accent text-2xl shadow-lg mb-6">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">WhatsApp Chat Analyzer</h3>
+                            <p class="text-muted text-sm mb-6 leading-relaxed">
+                                Advanced EDA tool that parses chat exports to visualize user engagement, activity trends, and communication patterns using Python.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2 py-1 bg-accent/10 text-accent text-xs rounded border border-accent/20">Python</span>
+                                <span class="px-2 py-1 bg-purple-500/10 text-purple-300 text-xs rounded border border-purple-500/20">Matplotlib</span>
+                                <span class="px-2 py-1 bg-white/5 text-gray-400 text-xs rounded">NLP</span>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 flex justify-between items-center">
+                                <a href="#" class="text-white font-medium text-sm hover:text-accent flex items-center gap-2">
+                                    View Code <i class="fab fa-github"></i>
+                                </a>
+                                <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-all cursor-pointer magnetic">
+                                    <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card group relative h-full" data-category="powerbi">
+                    <div class="tilt-card h-full bg-darker border border-white/10 rounded-2xl overflow-hidden hover:border-yellow-500/50 transition-colors duration-300 relative">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-darker z-10"></div>
+                        <div class="h-48 bg-gradient-to-br from-yellow-900/40 to-darker relative overflow-hidden">
+                            <div class="absolute -right-10 -top-10 text-9xl text-white/5 rotate-12"><i class="fas fa-cloud-sun"></i></div>
+                        </div>
+                        
+                        <div class="p-8 relative z-20 -mt-20 tilt-content">
+                            <div class="w-14 h-14 rounded-xl bg-card border border-white/10 flex items-center justify-center text-yellow-500 text-2xl shadow-lg mb-6">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-3 group-hover:text-yellow-500 transition-colors">Live Weather Dashboard</h3>
+                            <p class="text-muted text-sm mb-6 leading-relaxed">
+                                Real-time environmental monitoring dashboard fetching data via WeatherAPI. Tracks temperature, AQI, and humidity across multiple cities.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-2 py-1 bg-yellow-500/10 text-yellow-500 text-xs rounded border border-yellow-500/20">Power BI</span>
+                                <span class="px-2 py-1 bg-orange-500/10 text-orange-300 text-xs rounded border border-orange-500/20">API Integration</span>
+                            </div>
+                            <div class="pt-6 border-t border-white/5 flex justify-between items-center">
+                                <a href="#" class="text-white font-medium text-sm hover:text-yellow-500 flex items-center gap-2">
+                                    View Dashboard <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <span class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-yellow-500 group-hover:text-white transition-all cursor-pointer magnetic">
+                                    <i class="fas fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 bg-card/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 hacker-text" data-value="Client Reviews">Client Reviews</h2>
+                <p class="text-muted max-w-2xl mx-auto">Feedback from satisfied clients around the globe.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 reveal">
+                <!-- Review 1 -->
+                <div class="p-6 bg-card border border-white/5 rounded-xl relative group hover:border-primary/30 transition-all">
+                    <div class="absolute -top-4 left-6 text-4xl text-primary opacity-50"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-4">
+                        "Anish transformed our raw sales data into a stunning Power BI dashboard. The insights we gained helped us increase revenue by 15% in just two months. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">JD</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">John Doe</h4>
+                            <div class="text-xs text-muted">CEO, TechFlow</div>
+                        </div>
+                        <div class="ml-auto text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="p-6 bg-card border border-white/5 rounded-xl relative group hover:border-primary/30 transition-all">
+                    <div class="absolute -top-4 left-6 text-4xl text-secondary opacity-50"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-4">
+                        "The data cleaning scripts Anish wrote saved our team hours of manual work every week. Efficient, clean code and great communication throughout the project."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">SM</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Sarah Miller</h4>
+                            <div class="text-xs text-muted">Data Manager, RetailCo</div>
+                        </div>
+                        <div class="ml-auto text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="p-6 bg-card border border-white/5 rounded-xl relative group hover:border-primary/30 transition-all">
+                    <div class="absolute -top-4 left-6 text-4xl text-accent opacity-50"><i class="fas fa-quote-left"></i></div>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6 mt-4">
+                        "We needed a custom AI agent to handle customer queries, and Anish delivered beyond expectations. The bot is smart, responsive, and was integrated seamlessly."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">RK</div>
+                        <div>
+                            <h4 class="text-white font-bold text-sm">Rajesh Kumar</h4>
+                            <div class="text-xs text-muted">Founder, StartUp Hub</div>
+                        </div>
+                        <div class="ml-auto text-yellow-400 text-xs">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action / Contact Form (DB Integrated) -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-primary/5 -z-10"></div>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Left Side: Text & Info -->
+                <div class="text-left reveal">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6">Let's Work <br><span class="text-gradient">Together.</span></h2>
+                    <p class="text-muted text-lg mb-8 leading-relaxed">
+                        Have a project in mind? Fill out the form to send a message directly to my secure cloud database. I'm available for freelance work and full-time opportunities.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-primary text-xl">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted uppercase tracking-wider font-bold">Email</div>
+                                <a href="mailto:anishkumar841207@gmail.com" class="text-white hover:text-primary transition-colors font-medium">anishkumar841207@gmail.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-secondary text-xl">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-muted uppercase tracking-wider font-bold">Phone</div>
+                                <a href="tel:+916202791429" class="text-white hover:text-secondary transition-colors font-medium">+91 6202791429</a>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 mt-8">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary transition-all"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-black transition-all"><i class="fab fa-github"></i></a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-blue-400 transition-all"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Database Form -->
+                <div class="reveal delay-200">
+                    <form id="contact-form" class="bg-card border border-white/10 p-8 rounded-2xl shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-[50px] pointer-events-none"></div>
+                        
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fas fa-paper-plane text-green-400"></i> Send Message
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-xs text-muted font-bold uppercase tracking-wider mb-2">Name</label>
+                                <input type="text" id="name" required class="w-full bg-darker border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 placeholder-gray-600" placeholder="Name">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-muted font-bold uppercase tracking-wider mb-2">Email</label>
+                                <input type="email" id="email" required class="w-full bg-darker border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 placeholder-gray-600" placeholder="name@gmail.com">
+                            </div>
+                            <div>
+                                <label class="block text-xs text-muted font-bold uppercase tracking-wider mb-2">Message</label>
+                                <textarea id="message" required rows="4" class="w-full bg-darker border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary/50 placeholder-gray-600" placeholder="Tell me about your project..."></textarea>
+                            </div>
+                            
+                            <button type="submit" id="submit-btn" class="w-full py-4 bg-gradient-to-r from-primary to-accent rounded-lg text-white font-bold shadow-lg hover:shadow-primary/25 transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+                                <span>Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+
+                        <!-- Status Message -->
+                        <div id="form-status" class="mt-4 text-center text-sm font-medium hidden"></div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-20 text-center text-sm text-muted border-t border-white/5 pt-8">
+                <p>&copy; 2026 Anish Analytics. Built with <i class="fas fa-heart text-red-500 mx-1"></i> and Data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script>
+        // --- 0. Preloader Logic ---
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            const percent = document.getElementById('loader-percent');
+            let load = 0;
+            
+            const interval = setInterval(() => {
+                load += Math.floor(Math.random() * 10) + 1;
+                if(load > 100) load = 100;
+                percent.innerText = load + '%';
+                
+                if (load === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        preloader.classList.add('opacity-0', 'pointer-events-none');
+                        typeEffect();
+                    }, 500);
+                }
+            }, 50);
+        });
+
+        // --- Pricing Modal Logic ---
+        const pricingData = {
+            dashboards: {
+                title: 'Interactive Dashboards',
+                plans: [
+                    { name: 'Basic', price: '$50', features: ['1 Page Dashboard', 'Looker/Excel Source', 'Standard Visuals', '2 Revisions'] },
+                    { name: 'Standard', price: '$150', features: ['3 Page Dashboard', 'SQL/Excel Integration', 'Interactive Filters', '5 Revisions'] },
+                    { name: 'Premium', price: '$300+', features: ['Multi-Page Report', 'API Integration', 'Auto-Refresh Setup', 'Unlimited Revisions'] }
+                ]
+            },
+            cleaning: {
+                title: 'Data Cleaning & Analysis',
+                plans: [
+                    { name: 'Basic', price: '$40', features: ['Up to 10k Rows', 'Remove Duplicates', 'Missing Value Fix', 'CSV Export'] },
+                    { name: 'Standard', price: '$100', features: ['Up to 100k Rows', 'Complex Transformations', 'Data Standardization', 'EDA Report'] },
+                    { name: 'Premium', price: '$250+', features: ['1M+ Rows', 'SQL Optimization', 'Automated Pipeline', 'Detailed Documentation'] }
+                ]
+            },
+            ml: {
+                title: 'Machine Learning Models',
+                plans: [
+                    { name: 'Basic', price: '$100', features: ['Simple Classification', 'Data Preprocessing', 'Model Training', 'Accuracy Report'] },
+                    { name: 'Standard', price: '$300', features: ['Advanced Algorithms', 'Feature Engineering', 'Hyperparameter Tuning', 'Streamlit Demo'] },
+                    { name: 'Premium', price: '$600+', features: ['End-to-End Pipeline', 'API Deployment', 'Real-time Inference', 'Full Source Code'] }
+                ]
+            },
+            ai_agents: {
+                title: 'AI Agent Development',
+                plans: [
+                    { name: 'Basic', price: '$150', features: ['Simple Q&A Bot', 'Pre-defined Responses', 'Basic Prompt Engineering', 'Web Interface'] },
+                    { name: 'Standard', price: '$400', features: ['Custom Knowledge Base', 'RAG Implementation', 'Context Awareness', 'API Integration'] },
+                    { name: 'Premium', price: '$800+', features: ['Autonomous Agents', 'Complex Workflows', 'Multi-Agent System', 'Production Deployment'] }
+                ]
+            }
+        };
+
+        function openPricing(serviceKey) {
+            const modal = document.getElementById('pricing-modal');
+            const title = document.getElementById('modal-title');
+            const container = document.getElementById('pricing-cards');
+            const data = pricingData[serviceKey];
+            
+            if (!data) return;
+
+            title.innerText = data.title;
+            container.innerHTML = '';
+
+            data.plans.forEach((plan, index) => {
+                const colorClass = index === 1 ? 'border-primary bg-primary/10' : 'border-white/10 bg-white/5';
+                const btnClass = index === 1 ? 'bg-primary text-white' : 'bg-white/10 text-white hover:bg-white/20';
+                
+                const featuresHtml = plan.features.map(f => `<li class="flex items-center text-sm text-muted"><i class="fas fa-check text-green-400 mr-2"></i> ${f}</li>`).join('');
+
+                container.innerHTML += `
+                    <div class="border ${colorClass} rounded-xl p-6 relative flex flex-col">
+                        ${index === 1 ? '<span class="absolute top-0 right-0 bg-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</span>' : ''}
+                        <h4 class="text-xl font-bold text-white mb-2">${plan.name}</h4>
+                        <div class="text-3xl font-bold text-white mb-6">${plan.price}</div>
+                        <ul class="space-y-3 mb-8 flex-grow">
+                            ${featuresHtml}
+                        </ul>
+                        <button onclick="contactRedirect('${data.title} - ${plan.name} Plan')" class="block w-full text-center py-2 rounded-lg font-medium transition-colors ${btnClass}">Choose Plan</button>
+                    </div>
+                `;
+            });
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                document.getElementById('pricing-content').classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closePricing() {
+            const modal = document.getElementById('pricing-modal');
+            modal.classList.add('opacity-0');
+            document.getElementById('pricing-content').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function contactRedirect(subject) {
+            closePricing();
+            const contactSection = document.getElementById('contact');
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // Focus on message field if redirecting from pricing
+            setTimeout(() => {
+                const msgField = document.getElementById('message');
+                msgField.focus();
+                msgField.value = `I'm interested in: ${subject}. \n\nHi Anish, I would like to discuss...`;
+            }, 800);
+        }
+
+        document.getElementById('pricing-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'pricing-modal') closePricing();
+        });
+
+
+        // --- Chatbot Logic ---
+        let isChatOpen = false;
+        let chatState = 0; 
+        let userName = "";
+        
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            isChatOpen = !isChatOpen;
+            
+            if(isChatOpen) {
+                chatWindow.classList.remove('scale-0', 'opacity-0', 'pointer-events-none');
+                const msgs = document.getElementById('chat-messages');
+                if (msgs.children.length === 0) {
+                     setTimeout(() => addMessage("Hello! I'm Anish's AI Assistant. Before we start, may I know your name?", 'bot'), 500);
+                }
+            } else {
+                chatWindow.classList.add('scale-0', 'opacity-0', 'pointer-events-none');
+            }
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('chat-input');
+            const message = inputField.value.trim();
+            if(!message) return;
+
+            addMessage(message, 'user');
+            inputField.value = '';
+
+            setTimeout(() => {
+                if (chatState === 0) {
+                    // Smart Check: If user asks a question directly instead of name
+                    const lowerMsg = message.toLowerCase();
+                    const directQuestionKeywords = ["price", "cost", "kitna", "work", "kaam", "help", "project", "hi", "hello", "services", "kya", "kaise"];
+                    
+                    if (directQuestionKeywords.some(k => lowerMsg.includes(k))) {
+                        userName = "Guest";
+                        const response = getBotResponse(lowerMsg);
+                        addMessage(response, 'bot');
+                        chatState = 2; // Move to chat state
+                    } else {
+                        userName = message;
+                        addMessage(`Nice to meet you, ${userName}! 👋`, 'bot');
+                        setTimeout(() => {
+                            addMessage("What are you looking for today? You can ask about my <b>Projects</b>, <b>Freelance Services</b>, or <b>Tech Stack</b>.", 'bot');
+                        }, 800);
+                        chatState = 2; 
+                    }
+                } else {
+                    const response = getBotResponse(message.toLowerCase());
+                    addMessage(response, 'bot');
+                }
+            }, 400); 
+        }
+
+        function addMessage(text, sender) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const div = document.createElement('div');
+            
+            if(sender === 'user') {
+                div.className = 'flex items-center justify-end gap-3 message-enter';
+                div.innerHTML = `<div class="bg-primary p-3 rounded-2xl rounded-tr-none text-sm text-white shadow-sm max-w-[85%]">${text}</div>`;
+            } else {
+                div.className = 'flex items-start gap-3 message-enter';
+                div.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-xs text-white flex-shrink-0 mt-1"><i class="fas fa-robot"></i></div>
+                    <div class="bg-white/10 border border-white/5 p-3 rounded-2xl rounded-tl-none text-sm text-gray-200 shadow-sm max-w-[85%] leading-relaxed">${text}</div>
+                `;
+            }
+            
+            messagesContainer.appendChild(div);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // Expanded Knowledge Base Logic (Deep Technical + Hinglish)
+        function getBotResponse(input) {
+            const knowledgeBase = [
+                // Greetings
+                {
+                    keywords: ["hi", "hello", "hey", "namaste", "start", "kaise ho"],
+                    response: `Hello ${userName}! I am Anish's <b>Advanced AI Assistant</b>. I can provide deep insights into his <b>Machine Learning models</b>, <b>Data Architecture</b>, or <b>Freelance pricing</b>. What technical detail would you like to know?`
+                },
+                
+                // Work Process / Workflow
+                {
+                    keywords: ["process", "workflow", "methodology", "step", "kaam kaise", "tarika", "approach", "kaise banate ho"],
+                    response: "My workflow is systematic and transparent:<br>1. <b>Requirement Gathering:</b> I start by understanding your business goals and KPIs.<br>2. <b>Data Collection & Cleaning:</b> I use Python/SQL to gather and sanitize raw data.<br>3. <b>Analysis & Modeling:</b> I identify patterns or build ML models for predictions.<br>4. <b>Visualization:</b> I create interactive Power BI/Excel dashboards for insights.<br>5. <b>Delivery:</b> Final handoff with documentation and support."
+                },
+
+                // Gratitude (New Feature)
+                {
+                    keywords: ["thank", "thanks", "shukriya", "dhanyavad", "badhiya", "mast", "good", "great", "thx"],
+                    response: "You're welcome! 😊 Glad I could help. If you have more questions about Anish's projects or want to discuss a freelance opportunity, just ask!"
+                },
+                
+                // Services & Pricing (Freelance)
+                {
+                    keywords: ["service", "offer", "freelance", "work", "kya karte ho", "services", "kya kar sakte ho"],
+                    response: "I offer 4 main services:<br>• <b>Interactive Dashboards</b> (Power BI/Looker Studio/Excel)<br>• <b>Data Cleaning & Analysis</b> (Python/SQL)<br>• <b>Machine Learning Models</b><br>• <b>AI Agent Development</b> (LangChain)<br><br>Click on 'Services' above to see details."
+                },
+                {
+                    keywords: ["price", "cost", "charge", "rate", "kitna loge", "pricing", "paisa", "kitna", "amount"],
+                    response: "My pricing is transparent:<br>• <b>Dashboards:</b> Start at $50 (Basic) to $300+ (Premium).<br>• <b>Data Cleaning:</b> Starts at $40.<br>• <b>AI Agents:</b> Start at $150.<br>• <b>ML Models:</b> Start at $100.<br><br>Check the 'Services' section for full plans!"
+                },
+                
+                // AI Agents Specific
+                {
+                    keywords: ["agent", "ai", "langchain", "crewai", "llm", "bot", "automation", "banate ho", "banaya hai"],
+                    response: "Yes! Anish specializes in <b>AI Agent Development</b>. He builds autonomous systems using <b>LangChain</b> and <b>CrewAI</b>.<br>These agents can perform multi-step workflows (e.g., 'Search web -> Summarize -> Save to DB') and integrate with LLMs like GPT-4 or Llama 2."
+                },
+
+                // Projects - Deep Dive
+                {
+                    keywords: ["sms", "spam", "classifier", "nlp", "tf-idf", "algorithm", "stacking"],
+                    response: "For the <b>SMS Spam Classifier</b>, Anish used a <b>Stacking Classifier</b> approach.<br>Key tech: <b>TF-IDF Vectorization</b> for text features, handling stop-words/lemmatization.<br>The model is deployed via a <b>Streamlit</b> web app for real-time predictions."
+                },
+                {
+                    keywords: ["hospital", "power bi", "dashboard", "dax", "sql", "query", "medical"],
+                    response: "The <b>Smart Hospital System</b> uses a <b>SQL</b> backend. Anish wrote complex <b>DAX measures</b> to calculate KPIs like 'Average Recovery Time' and 'Doctor Efficiency'.<br>It features dynamic filtering to drill down from hospital-wide stats to individual patient records."
+                },
+                {
+                    keywords: ["whatsapp", "chat", "eda", "sentiment", "pandas", "social"],
+                    response: "The <b>WhatsApp Chat Analyzer</b> uses <b>Python (Pandas)</b> for heavy text parsing.<br>Anish used <b>Matplotlib & Seaborn</b> for heatmaps (activity patterns) and implemented <b>Sentiment Analysis</b> to visualize conversation tone trends over time."
+                },
+                {
+                    keywords: ["weather", "api", "json", "real-time", "integration", "live"],
+                    response: "The <b>Weather Dashboard</b> fetches live JSON data via <b>WeatherAPI</b> REST calls.<br>Anish automated the data refresh cycle in Power BI (using Power Query) to parse nested JSON arrays for real-time AQI and temperature monitoring."
+                },
+
+                // Tech Stack
+                {
+                    keywords: ["looker", "studio", "google data", "gds"],
+                    response: "Anish is proficient in <b>Google Looker Studio</b>. He creates live, shareable reports that connect directly to Google Sheets, BigQuery, and Google Analytics (GA4) for real-time tracking."
+                },
+                {
+                    keywords: ["python", "stack", "tools", "technology", "skill", "tech", "use", "aata hai"],
+                    response: "Anish's Tech Arsenal:<br>• <b>Languages:</b> Python, SQL<br>• <b>Libraries:</b> Pandas, NumPy, Scikit-learn, NLTK<br>• <b>Visualization:</b> Power BI, Looker Studio, Excel<br>• <b>Deployment:</b> Streamlit, Docker, FastAPI, Git"
+                },
+
+                // Experience / About
+                {
+                    keywords: ["experience", "job", "intern", "spiderlink", "edulyt", "work history", "background", "company"],
+                    response: "Anish is currently an <b>MIS Executive at Spiderlink Network</b> (Dec 2025 - Present), handling data pipelines and reporting.<br><br>Previously, he was a <b>Data Analyst Intern at Edulyt India</b> (May-Jul 2025), where he built educational dashboards."
+                },
+
+                // Contact
+                {
+                    keywords: ["contact", "email", "hire", "number", "phone", "baat", "call", "connect"],
+                    response: "You can reach Anish directly at:<br>📧 <b>anishkumar841207@gmail.com</b><br>📞 <b>+91 6202791429</b><br><br>Or use the 'Hire Me' button to scroll to the contact form!"
+                }
+            ];
+
+            // Smart Matching Algorithm
+            for (let item of knowledgeBase) {
+                if (item.keywords.some(keyword => input.includes(keyword))) {
+                    return item.response;
+                }
+            }
+
+            // Fallback
+            return "That's a specific question! I know about Anish's <b>Projects</b>, <b>Tech Stack</b>, and <b>Freelance Rates</b>. Could you rephrase, or should I connect you with him directly?";
+        }
+
+
+        // --- 1. Canvas Network Animation (Enhanced) ---
+        const canvas = document.getElementById('canvas-network');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+        
+        // Resize Handler
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initParticles();
+        }
+        
+        // Particle Class
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction
+                if (mouse.x != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        const directionX = forceDirectionX * force * this.density;
+                        const directionY = forceDirectionY * force * this.density;
+                        
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    }
+                }
+            }
+            
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(59, 130, 246, 0.5)'; // Primary color
+                ctx.fill();
+            }
+        }
+        
+        function initParticles() {
+            particles = [];
+            const particleCount = Math.floor(window.innerWidth / 15); // Responsive count
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+        
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                
+                // Draw connections
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(59, 130, 246, ${0.1 - distance/1000})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+                
+                // Connect to mouse
+                if (mouse.x != null) {
+                    let dx = particles[i].x - mouse.x;
+                    let dy = particles[i].y - mouse.y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+                    if (distance < 150) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(16, 185, 129, ${0.2 - distance/150})`; // Secondary color for mouse interaction
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        
+        window.addEventListener('resize', resize);
+        resize();
+        animateCanvas();
+
+        // --- 2. Magnetic Buttons ---
+        const magnets = document.querySelectorAll('.magnetic');
+        magnets.forEach((magnet) => {
+            magnet.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                // Move element
+                this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            
+            magnet.addEventListener('mouseleave', function() {
+                this.style.transform = 'translate(0px, 0px)';
+            });
+        });
+
+        // --- 3. Project Filtering ---
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        card.classList.add('animate-fade-in');
+                        setTimeout(() => card.classList.remove('animate-fade-in'), 500);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // --- 4. 3D Tilt Effect ---
+        const tilts = document.querySelectorAll('.tilt-card');
+        tilts.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -10;
+                const rotateY = ((x - centerX) / centerX) * 10;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0) rotateY(0)`;
+            });
+        });
+
+        // --- 5. Scroll Reveal & Navbar ---
+        const navbar = document.getElementById('navbar');
+        const reveals = document.querySelectorAll('.reveal');
+        
+        // Hacker Text Logic
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        function hackText(element) {
+            let iterations = 0;
+            const originalText = element.dataset.value;
+            const interval = setInterval(() => {
+                element.innerText = originalText.split("")
+                    .map((letter, index) => {
+                        if(index < iterations) return originalText[index];
+                        return letters[Math.floor(Math.random() * 26)];
+                    })
+                    .join("");
+                if(iterations >= originalText.length) clearInterval(interval);
+                iterations += 1/3;
+            }, 30);
+        }
+
+        function scrollHandler() {
+            // Navbar
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg', 'bg-dark/90');
+                navbar.classList.replace('h-20', 'h-16');
+            } else {
+                navbar.classList.remove('shadow-lg', 'bg-dark/90');
+                navbar.classList.replace('h-16', 'h-20');
+            }
+            
+            // Reveals
+            const triggerBottom = window.innerHeight * 0.8;
+            reveals.forEach(reveal => {
+                const top = reveal.getBoundingClientRect().top;
+                if (top < triggerBottom && !reveal.classList.contains('active')) {
+                    reveal.classList.add('active');
+                    
+                    // Trigger text effect if present
+                    const hackerText = reveal.querySelector('.hacker-text');
+                    if(hackerText) hackText(hackerText);
+                }
+            });
+
+            // Scroll Progress
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        }
+        
+        window.addEventListener('scroll', scrollHandler);
+
+        // --- 6. Number Counter Animation ---
+        const counters = document.querySelectorAll('.counter');
+        let hasAnimatedCounters = false;
+
+        function animateCounters() {
+            if (hasAnimatedCounters) return;
+            const section = document.querySelector('.counter').closest('section');
+            const sectionPos = section.getBoundingClientRect().top;
+            const screenPos = window.innerHeight;
+            if (sectionPos < screenPos) {
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    const increment = target / 50;
+                    const updateCount = () => {
+                        const count = +counter.innerText;
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + increment);
+                            setTimeout(updateCount, 40);
+                        } else {
+                            counter.innerText = target + (target === 100 ? '%' : '+');
+                        }
+                    };
+                    updateCount();
+                });
+                hasAnimatedCounters = true;
+            }
+        }
+        window.addEventListener('scroll', animateCounters);
+
+        // --- 7. Custom Cursor Logic ---
+        const cursorDot = document.getElementById('cursor-dot');
+        const cursorOutline = document.getElementById('cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            cursorOutline.style.left = `${posX}px`;
+            cursorOutline.style.top = `${posY}px`;
+            
+            // Spotlight Effect
+            document.querySelectorAll('.spotlight-wrapper').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        const clickableElements = document.querySelectorAll('a, button, .project-card, .spotlight-wrapper, .magnetic');
+        clickableElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorOutline.style.backgroundColor = 'rgba(59, 130, 246, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.backgroundColor = 'transparent';
+            });
+        });
+
+        // --- 8. Typing Text Animation (Hero) ---
+        const typingText = document.getElementById('typing-text');
+        const phrases = ['Intelligence.', 'Insights.', 'Growth.', 'Strategy.'];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeEffect() {
+            // Only start if preloader is done (checked via opacity or simple flag)
+            // But function is called from preloader callback
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 150;
+            }
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                typingSpeed = 2000;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typingSpeed = 500;
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+        
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+    </script>
+    
+    <!-- Firebase Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        const firebaseConfig = JSON.parse(__firebase_config);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Auth Setup
+        const initAuth = async () => {
+            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        };
+        initAuth();
+
+        // Form Handling
+        const contactForm = document.getElementById('contact-form');
+        const statusDiv = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submit-btn');
+
+        if(contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const user = auth.currentUser;
+                if (!user) {
+                    statusDiv.innerText = "Initializing database... please try again in a moment.";
+                    statusDiv.classList.remove('hidden', 'text-green-400');
+                    statusDiv.classList.add('text-red-400');
+                    return;
+                }
+
+                // Loading State
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                try {
+                    await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'contact_messages'), {
+                        name: name,
+                        email: email,
+                        message: message,
+                        timestamp: serverTimestamp(),
+                        userId: user.uid
+                    });
+
+                    // Success UI
+                    statusDiv.innerHTML = '<i class="fas fa-check-circle"></i> Message saved to Database successfully!';
+                    statusDiv.classList.remove('hidden', 'text-red-400');
+                    statusDiv.classList.add('text-green-400', 'animate-pulse');
+                    contactForm.reset();
+                    
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<span>Send Message</span> <i class="fas fa-paper-plane"></i>';
+                        setTimeout(() => statusDiv.classList.add('hidden'), 5000);
+                    }, 2000);
+
+                } catch (error) {
+                    console.error("Error adding document: ", error);
+                    statusDiv.innerText = "Error saving to database. Please try again.";
+                    statusDiv.classList.remove('hidden', 'text-green-400');
+                    statusDiv.classList.add('text-red-400');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<span>Send Message</span> <i class="fas fa-paper-plane"></i>';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
